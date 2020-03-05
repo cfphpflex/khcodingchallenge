@@ -1,78 +1,72 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+#  Kittyhawk Coding Challenge 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Overview
+Kittyhawk processes a lot of data from various different places. Whether it's manually entered user data or programmatic data we capture from the drone itself, we're often operating on it. Not only are we collecting and processing large sums of data, but we're frequently adding valuable insight to it. For example, it's very handy to have the weather that a flight occurred in and very handy to have the airspace that it occurred in.
 
-## About Laravel
+As part of the Kittyhawk Coding Challenge, we're going to put you in some real-world scenarios and evaluate your problem solving abilities.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+For this challenge, please use the following base tools:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel 6.x latest
+- Any Javascript library/framework you want, if you want.
+- DarkSky API 
+- Kittyhawk's Airspace API
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## User Stories
 
-## Learning Laravel
+1) As a user, I should be able to create and edit a flight from a website. If I enter in incorrect data, I should be notified. 
+2)  As a user, I should be able to view a flight on a website. That should include a map, time, latitude, longitude, temperature, and a simple weather string ie, "Sunny" or "Partly Cloudy" (Available from the DarkSky API). 
+3) After logging a flight, my flight should asynchronously fetch the weather and airspace for the flight.
+4) After logging a flight, I should know (A simple Boolean in your flight table called `warning` will do) if my flight happened inside of a TFR, according to Kittyhawk Airspace. 
+5) If I change the location of a flight, the system should automatically update the weather and airspace for that new location.
+6) As a user, I should be able to call an API endpoint that lists, in JSON, all of the flights with their weather and airspace advisories.
+7) As a user I should be able to list a single flight via API in JSON with it's weather and airspace advisories.
+8) As a user, I should be able to create a flight using JSON from an API endpoint that will return errors with my input if it's wrong.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Flight Table
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    Schema::create('flights', function (Blueprint $table) {  
+	  $table->increments('id');  
+	  $table->datetime('flight_time');  //Time of flight. You'll have LAT/LONG so you can adjust into UTC if you wish 
+	  $table->decimal('lat', 10, 8)->nullable();  
+	  $table->decimal('long', 11, 8)->nullable();  
+	  $table->integer('duration_in_seconds');   
+	  $table->text('notes');  
+	  $table->timestamps();  
+	  $table->softDeletes();  
+	});
 
-## Laravel Sponsors
+Use your best judgement for adding weather and airspace. (Separate table, other columns, whatever you want)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## DarkSky Weather API
+[https://darksky.net/dev](https://darksky.net/dev)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+## Mapping API
+We like http://Mapbox.com but you're free to use anything you'd like. 
 
-## Contributing
+## About Kittyhawk Airspace API
+Submit a GeoJSON point and receive a full JSON listing of advisories that affect this. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Endpoint:** `POST`  https://app.kittyhawk.io/api/atlas/advisories
+Sample Body For Endpoint:
 
-## Code of Conduct
+    {
+    "geometry": {
+        "format": "geojson",
+        "data": "{\"type\":\"Point\",\"coordinates\":[-73.97786381,40.759211117]}"
+    }
+	} 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The API returns a list of advisories along with a color. Red is restricted. Blue is controlled. And Green is "Good to go!"
 
-## Security Vulnerabilities
+## Notes for convenience
+- Feel free to make your Laravel Queue driver Sync. Just throw a dump() into your job so we can see clearly that it's exeuting the job.
+- You're INSIDE of a TFR if the distance to it is 0. 
+- Use any packages you want to use from Composer. ie [https://laravelcollective.com/docs/6.0/html](https://laravelcollective.com/docs/6.0/html)
+- Use as many models as you'd like
+- No auth/etc is required. Just assume you're working in a larger project that handles all that for you.
+- Bootstrap? Tailwind? Other CSS? Go nuts. 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Oh Sh!T, WTFBBQ This isnt working like I thought.
+If you have problems, please feel free to reach out to Josh. 
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
