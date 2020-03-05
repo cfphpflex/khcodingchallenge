@@ -60,6 +60,7 @@ Sample Body For Endpoint:
 The API returns a list of advisories along with a color. Red is restricted. Blue is controlled. And Green is "Good to go!"
 
 ## Notes for convenience
+- Laravel Docs!! https://laravel.com/docs/6.x
 - Feel free to make your Laravel Queue driver Sync. Just throw a dump() into your job so we can see clearly that it's exeuting the job.
 - You're INSIDE of a TFR if the distance to it is 0. 
 - Use any packages you want to use from Composer. ie [https://laravelcollective.com/docs/6.0/html](https://laravelcollective.com/docs/6.0/html)
