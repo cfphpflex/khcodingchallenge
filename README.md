@@ -14,12 +14,12 @@ For this challenge, please use the following base tools:
 
 ## User Stories
 
-1) As a user, I should be able to create and edit a flight from a website. If I enter in incorrect data, I should be notified. 
+1) As a user, I should be able to create and edit a flight from a website. If I enter in incorrect data, I should be notified. For example, the latitude must be a number between -90 and 90 and the longitude between -180 and 180. Or for example, there is no year -2000.
 2)  As a user, I should be able to view a flight on a website. That should include a map, time, latitude, longitude, temperature, and a simple weather string ie, "Sunny" or "Partly Cloudy" (Available from the DarkSky API). 
-3) After logging a flight, my flight should asynchronously fetch the weather and airspace for the flight.
+3) After a flight log has been created, my flight should asynchronously fetch the weather and airspace for the flight.
 4) After logging a flight, I should know (A simple Boolean in your flight table called `warning` will do) if my flight happened inside of a TFR (Temporary Flight Restriction AKA NO FLY ZONE), according to Kittyhawk Airspace. 
-5) If I change the location of a flight, the system should automatically update the weather and airspace for that new location.
-6) As a user, I should be able to call an API endpoint that lists, in JSON, all of the flights with their weather and airspace advisories.
+5) If I change the location or time/date of a flight, the system should automatically update the weather and airspace for that new location.
+6) As a user, I should be able to call an API endpoint that lists, in JSON, all of the flights with their weather and airspace advisories. Don't worry about filtering flights by user. Assume you're the only user on the platform for this.
 7) As a user I should be able to list a single flight via API in JSON with it's weather and airspace advisories.
 8) As a user, I should be able to create a flight using JSON from an API endpoint that will return errors with my input if it's wrong.
 
