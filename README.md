@@ -42,13 +42,13 @@ For this challenge, please use the following base tools:
 
 Use your best judgement for adding weather and airspace. (Separate table, other columns, whatever you want)
 
-## DONE: DarkSky Weather API
+## DarkSky Weather API
 [https://darksky.net/dev](https://darksky.net/dev)
 
-## DONE:  Mapping API
+## Mapping API
 We like http://Mapbox.com but you're free to use anything you'd like. 
 
-## DONE:  About Kittyhawk Airspace API
+## About Kittyhawk Airspace API
 Submit a GeoJSON point and receive a full JSON listing of advisories that affect this. 
 
 **Endpoint:** `POST`  https://app.kittyhawk.io/api/atlas/advisories
