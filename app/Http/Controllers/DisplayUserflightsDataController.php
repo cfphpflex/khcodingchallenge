@@ -204,29 +204,8 @@ class DisplayUserflightsDataController extends Controller
             return response()->json(['errors' => $validator->errors()->all()]);
         }
 
-
         $this->userflights->updateData($id, $request->all());
 
-//        return response()->json(['success'=>'Product updated successfully']);
-//
-//        $Userflight = Userflights::find($id);
-//        $Userflight->serialnumber = $request->get('serialname');
-//        $Userflight->latitude = $request->get('latitude');
-//        $Userflight->longitude = $request->get('longitude');
-//        $Userflight->fligthpath = $request->get('fligthpath');
-//        $Userflight->height = $request->get('height');
-//        $Userflight->temperature = $request->get('temperature');
-//        $Userflight->weather = $request->get('weather');
-//        $Userflight->status = $request->get('status');
-//        $Userflight->updated_at = $request->get('updated_at');
-//        $Userflight->save();
-//
-//        $this->Userflights->updateData($id, $request->all());
-//
-//        return response()->json(['success'=>'Product updated successfully']);
-
-
-       // return redirect('/userflightcreate')->with('success', 'Flight updated Successfully.');
     }
 
     /**
@@ -296,7 +275,7 @@ class DisplayUserflightsDataController extends Controller
     /**
      * get DarkSky weather.
      *
-     * @param  lat
+     *  @param  lat
      *  @param  lon
      * @return \Illuminate\Http\Response
      */
