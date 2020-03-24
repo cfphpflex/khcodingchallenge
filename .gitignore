@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 composer.lock
+app/Http/.DS_Store
+app/.DS_Store
