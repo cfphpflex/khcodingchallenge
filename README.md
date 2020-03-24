@@ -116,3 +116,6 @@ If you have problems, please feel free to reach out to Josh.
 
 # run the server
 -  php artisan serve
+
+# See new Map Fligth and Flith manager  at
+http://localhost:8000/userflightcreate
