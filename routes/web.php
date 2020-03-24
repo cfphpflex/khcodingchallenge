@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('usercreate',           'DisplayDataController@create');
+Route::get('getuser',              'DisplayDataController@index');
+
+Route::get('userflightcreate',      'DisplayUserflightsDataController@create');
+Route::get('getuserflights',        'DisplayUserflightsDataController@index');
+Route::get('getAtlasadvisories',    'DisplayUserflightsDataController@getAtlasadvisories');
+Route::get('getDarkSkyWeather',     'DisplayUserflightsDataController@getDarkSkyWeather');

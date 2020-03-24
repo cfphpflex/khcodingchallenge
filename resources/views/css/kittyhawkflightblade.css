@@ -1,0 +1,327 @@
+
+<style>
+
+  .markerDrone {
+    background-image: url('assets/icons/icon_drone.png');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border-radius: 150%;
+    cursor: pointer;
+  }
+
+  .markerController {
+    background-image: url('assets/icons/icon_remote.svg');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border-radius: 150%;
+    cursor: pointer;
+  }
+
+  #replay .map-overlay-inner {
+    font: 12px/22px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: relative;
+    width: 200px;
+    /* float: right; */
+    right: 0;
+    padding: 2px;
+    top: -290px;
+    left: 40px;
+    z-index: 1001;
+  }
+
+  .mapoverlay {
+    font: 12px/22px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: relative;
+    width: 200px;
+    /* float: right; */
+    right: 0;
+    padding: 2px;
+    top: -274px;
+    left: 40px;
+    z-index: 1001;
+  }
+
+
+  .map-overlay-inner fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 10px;
+  }
+
+  .map-overlay-inner fieldset:last-child {
+    margin: 0;
+  }
+
+  .map-overlay-inner select {
+    width: 100%;
+  }
+
+  .map-overlay-inner label {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 5px;
+  }
+
+  .map-overlay-inner button {
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .map-overlay-inner button:focus {
+    outline: none;
+  }
+
+  .map-overlay-inner button:hover {
+    box-shadow:inset 0 0 0 3px rgba(0, 0, 0, 0.10);
+  }
+
+
+  .dropdown {
+   display: block;
+   height: 1.3em;
+   margin: 36px 0px 0px 6px;
+   padding: 0px 0px 0px 4px;
+   width: max-content;
+   min-width: 80px;
+   position: relative;
+   background: var(--header-bg-color);
+   color: var(--font-color-white);
+   cursor: pointer;
+
+  }
+
+  .dropbtn {
+    position: relative;
+    font-size: 0.67em;
+    font-weight: bold;
+    font-family: SourceSansPro, sans-serif;
+    background: var(--header-bg-color);
+    color: var(--font-color-white);
+    height: auto;
+    width: 100%;
+    border: 1px var(--font-color-white) solid;
+    border-radius: 3px;
+    text-align: left;
+    margin-top: -1px;
+    padding: 4px 2px 2px 4px;
+    text-transform: uppercase;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    padding: 2px 2px 2px 0px;
+    background: var(--header-bg-color);
+    color: var(--font-color-white);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 5;
+    border-radius:3px;
+    cursor: default;
+  }
+
+  .dropdown-content a {
+    background: var(--header-bg-color);
+    color: var(--font-color-white);
+    border: 1px var(--font-color-white) solid;
+    border-radius:3px;
+    text-transform: uppercase;
+    font-size: 0.67em;
+    font-weight: bold;
+    vertical-align: middle;
+    padding: 2px 2px 2px 4px;
+    text-decoration: none;
+    display: block;
+    cursor: default;
+  }
+
+  .dropdown-content a .unitOff{
+    background: var(--header-bg-color);
+    color: grey;
+    font-weight: normal;
+
+  }
+
+  .dropdown-content a:hover {
+    background: var(--font-color-white);
+    color: var(--header-bg-color);
+
+  }
+
+  .dropdown-content a:hover .unitOff {
+    background: var(--font-color-white);
+    color: grey;
+    font-weight: normal;
+  }
+
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    border-radius:3px;
+  }
+
+  .dropdown:hover .dropbtn {
+    background: var(--font-color-white);
+    color: var(--header-bg-color);
+  }
+
+  /*Dropdown In Map*/
+
+  .dropdown-map {
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    color: var(--font-color-white);
+    cursor: pointer;
+    top: 64px;
+    z-index: 9999;
+  }
+
+  .dropbtn-map {
+    position: relative;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: SourceSansPro, sans-serif;
+    background-color: var(--button-bg-grey);
+    border-radius: 2px;
+    color: var(--font-color-white);
+    height: 100%;
+    width: 100%;
+    /*margin: 0px;*/
+    lign-items: center;
+    text-transform: uppercase;
+    padding: 5px;
+    border: solid 1px var(--button-bg-grey);
+
+  }
+
+  .dropbtn-map img {
+    width: 16px;
+    height: 14px;
+  }
+
+  .dropdown-content-map {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    /*padding: 2px 2px 2px 0px;*/
+    margin-top: 2px;
+    margin-bottom: 1px;
+    color: var(--font-color-white);
+    z-index: 3;
+    border-radius:2px;
+  }
+
+  .dropdown-content-map a {
+    color: var(--font-color-white);
+    text-transform: uppercase;
+    font-size: 11px;
+    vertical-align: middle;
+    width: 16px;
+    margin-top: 2px;
+    /*padding: 2px 2px 2px 4px;*/
+    text-decoration: none;
+    display: block;
+    height: auto;
+    border-radius:2px;
+  }
+
+  .dropdown-content-map a:hover {
+    /*background: var(--font-color-white);*/
+    /*color: var(--header-bg-color);*/
+    filter: brightness(0.9);
+  }
+
+
+  .dropdown-map:hover .dropbtn-map {
+    filter: brightness(0.9);
+  }
+
+
+
+  #menu {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    right: 10px;
+    border-radius: 3px;
+    width: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #menu a {
+    font-size: 13px;
+    color: #404040;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+
+  #menu a:last-child {
+    border: none;
+  }
+
+  #menu a:hover {
+    background-color: #f8f8f8;
+    color: #404040;
+  }
+
+  #menu a.active {
+    background-color: #3887be;
+    color: #ffffff;
+  }
+
+  #menu a.active:hover {
+    background: #3074a4;
+  }
+
+   .calculation-box {
+     height: 75px;
+     width: 150px;
+     position: absolute;
+     bottom: 40px;
+     left: 10px;
+     background-color: rgba(255, 255, 255, 0.9);
+     padding: 15px;
+     text-align: center;
+   }
+
+  p {
+    font-family: 'Open Sans';
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  #info {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+    background: #fff;
+  }
+
+</style>
