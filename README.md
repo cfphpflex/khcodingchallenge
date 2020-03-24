@@ -48,9 +48,7 @@ We like http://Mapbox.com but you're free to use anything you'd like.
 Submit a GeoJSON point and receive a full JSON listing of advisories that affect this. 
 
 **Endpoint:** `POST`  https://app.kittyhawk.io/api/atlas/advisories
-
 Request URL: https://app.kittyhawk.io/api/account/154427/atlas/advisories
-
 Sample Body For Endpoint:
 
     {
