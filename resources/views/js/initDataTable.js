@@ -238,8 +238,8 @@ $(document).ready(function() {
 
 
 
-    var data_table, row_num=1, col_num=3, row_cell=1, col_cell=0, iter=0;
-    var cols = [
+    let data_table, row_num=1, col_num=3, row_cell=1, col_cell=0, iter=0;
+    let cols = [
         { "mDataProp": "Field1", sTitle: "id", sType : "numeric"},
         { "mDataProp": "Field2", sTitle: "serialnumber", sType : "numeric"},
         { "mDataProp": "Field3" , sTitle: "latitude", sType : "numeric"},
