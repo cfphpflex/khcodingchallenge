@@ -127,25 +127,25 @@ $(document).ready(function() {
                 }
 
                 if ( serialnumber.val().length < 1 ) {
-                    serialnumber.error( 'The Longitude requires at least one character' );
+                    serialnumber.error( 'The serial number requires at least one character' );
 
                 }
                 if ( serialnumber.val().length > 20 ) {
-                    serialnumber.error( 'The Longitude length  must be less that 20 characters' );
+                    serialnumber.error( 'The serial number length  must be less that 20 characters' );
                 }
             }
 
             var Latitude = this.field( 'latitude' );
             if ( ! Latitude.isMultiValue() ) {
                 if ( ! Latitude.val() ) {
-                    Latitude.error( 'A Latitude is required' );
+                    Latitude.error( 'A latitude is required' );
                 }
                 if ( Latitude.val().length < 1 ) {
-                    Latitude.error( 'The Longitude length must be greater that 1 characters' );
+                    Latitude.error( 'The latitude length must be greater that 1 characters' );
 
                 }
                 if ( Latitude.val().length > 20 ) {
-                    Latitude.error( 'The Longitude length  must be less that 20 characters' );
+                    Latitude.error( 'The latitude length  must be less that 20 characters' );
                 }
             }
 
