@@ -1,11 +1,7 @@
 #  Kittyhawk Coding Challenge 
 
 ## Overview
-Kittyhawk processes a lot of data from various different places.
-Whether it's manually entered user data or programmatic data we capture from the drone itself,
-we're often operating on it. Not only are we collecting and processing large sums of data, 
-but we're frequently adding valuable insight to it. For example, it's very handy to have the weather that a flight occurred in 
-and very handy to have the airspace that it occurred in.
+Kittyhawk processes a lot of data from various different places. Whether it's manually entered user data or programmatic data we capture from the drone itself, we're often operating on it. Not only are we collecting and processing large sums of data, but we're frequently adding valuable insight to it. For example, it's very handy to have the weather that a flight occurred in and very handy to have the airspace that it occurred in.
 
 As part of the Kittyhawk Coding Challenge, we're going to put you in some real-world scenarios and evaluate your problem solving abilities.
 
@@ -19,7 +15,7 @@ For this challenge, please use the following base tools:
 ## User Stories
 
 1) As a user, I should be able to create and edit a flight from a website. If I enter in incorrect data, I should be notified. For example, the latitude must be a number between -90 and 90 and the longitude between -180 and 180. Or for example, there is no year -2000.
-2) brew updateAs a user, I should be able to view a flight on a website. That should include a map, time, latitude, longitude, temperature, and a simple weather string ie, "Sunny" or "Partly Cloudy" (Available from the DarkSky API). 
+2) As a user, I should be able to view a flight on a website. That should include a map, time, latitude, longitude, temperature, and a simple weather string ie, "Sunny" or "Partly Cloudy" (Available from the DarkSky API). 
 3) After a flight log has been created, my flight should asynchronously fetch the weather and airspace for the flight.
 4) After logging a flight, I should know (A simple Boolean in your flight table called `warning` will do) if my flight happened inside of a TFR (Temporary Flight Restriction AKA NO FLY ZONE), according to Kittyhawk Airspace. 
 5) If I change the location or time/date of a flight, the system should automatically update the weather and airspace for that new location.
